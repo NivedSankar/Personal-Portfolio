@@ -7,12 +7,12 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>iPortfolio Bootstrap Template - Index</title>
+  <title>Nived Portfolio</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/nived3.1.jpg' %}" rel="icon">
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -48,7 +48,7 @@
     <div class="d-flex flex-column">
 
       <div class="profile">
-        <img src="{% static 'assets/img/hero-bg.jpg' %}" alt="" class="img-fluid rounded-circle">
+        <img src="{% static 'assets/img/Nived_profile.jpg' %}" alt="" class="img-fluid rounded-circle">
         <h1 class="text-light"><a href="index.html">Nived Sankar</a></h1>
         <div class="social-links mt-3 text-center">
           <a href="https://twitter.com/sankar_niv10522" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -645,7 +645,7 @@ https://drive.google.com/file/d/14lqSG-jiKnoPx-bI4XUrCMvPG_3-
 
         <div class="section-title">
           <h2>Contact</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+<!--          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>-->
         </div>
 
         <div class="row" data-aos="fade-in">
@@ -676,8 +676,9 @@ https://drive.google.com/file/d/14lqSG-jiKnoPx-bI4XUrCMvPG_3-
 
           </div>
 
+
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="{% url 'message' %}" method="post" role="form" class="php-email-form">{% csrf_token %}
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
@@ -698,8 +699,13 @@ https://drive.google.com/file/d/14lqSG-jiKnoPx-bI4XUrCMvPG_3-
               </div>
               <div class="my-3">
                 <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Your message has been sent. Thank you!</div>
+                <div class="my-3">
+    {% if messages %}
+        {% for message in messages %}
+            <div class="{% if message.tags %}{{ message.tags }}{% endif %}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+</div>
               </div>
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
